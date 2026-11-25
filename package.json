@@ -4,10 +4,10 @@
   "description": "Last Training — aim training desktop app",
   "author": "Ian Matheus",
   "license": "MIT",
-  "homepage": "https://github.com/ianmatheuszn",
+  "homepage": "https://github.com/iammatheuszn/last-training",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ianmatheuszn"
+    "url": "https://github.com/iammatheuszn/last-training.git"
   },
   "main": "src/main/index.js",
   "scripts": {

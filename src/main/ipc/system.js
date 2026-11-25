@@ -13,8 +13,8 @@ const CHANNELS = Object.freeze({
 });
 
 const ALLOWED_EXTERNAL = new Set([
-  'https://github.com/ianmatheuszn',
-  'https://github.com/ianmatheuszn/'
+  'https://github.com/iammatheuszn',
+  'https://github.com/iammatheuszn/'
 ]);
 
 let registered = false;

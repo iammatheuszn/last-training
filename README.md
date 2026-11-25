@@ -2,7 +2,7 @@
 
 Aim trainer desktop para Windows 10 e 11, construído com Electron, React, TypeScript e SQLite. O projeto separa a experiência local da autorização: o app desenha, captura ponteiro, roda o engine e salva estatísticas; o servidor decide login, licença, dispositivos, sessões, auditoria e permissões administrativas.
 
-**Open source por [Ian Matheus](https://github.com/ianmatheuszn).** O botão *Open source · GitHub* está disponível na tela de login, na barra do app e no painel administrativo.
+**Open source por [Ian Matheus](https://github.com/iammatheuszn).** O botão *Open source · GitHub* está disponível na tela de login, na barra do app e no painel administrativo.
 
 ## Projeto em imagens
 
@@ -123,4 +123,4 @@ MIT. Use, estude, modifique e publique com crédito.
 
 ## Créditos
 
-Desenvolvido por [Ian Matheus](https://github.com/ianmatheuszn).
+Desenvolvido por [Ian Matheus](https://github.com/iammatheuszn).
