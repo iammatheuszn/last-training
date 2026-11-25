@@ -1,0 +1,27 @@
+{
+	email admin@seu-dominio
+}
+
+{$LT_PUBLIC_ORIGIN} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "no-referrer"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+		-Server
+	}
+
+	request_body {
+		max_size 32KB
+	}
+
+	reverse_proxy 127.0.0.1:{$LT_SERVER_PORT} {
+		header_up Host {host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-For {remote_host}
+		flush_interval -1
+	}
+}

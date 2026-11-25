@@ -1,0 +1,13 @@
+:root {
+  --lt-void: #050505;
+  --lt-panel: #0a0a0a;
+  --lt-raise: #121212;
+  --lt-line: #2b2b2b;
+  --lt-line-soft: #1c1c1c;
+  --lt-ink: #f4f4f4;
+  --lt-ink-soft: #a8a8a8;
+  --lt-ink-dim: #6e6e6e;
+  --lt-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --lt-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --lt-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}

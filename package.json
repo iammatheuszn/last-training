@@ -1,0 +1,112 @@
+{
+  "name": "last-training",
+  "version": "0.1.0",
+  "description": "Last Training — aim training desktop app",
+  "author": "Ian Matheus",
+  "license": "MIT",
+  "homepage": "https://github.com/ianmatheuszn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ianmatheuszn"
+  },
+  "main": "src/main/index.js",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:app": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "dev:server": "npm run build:admin && node server/index.js",
+    "dev:all": "node scripts/dev.js",
+    "build": "npm run build:admin && vite build && node scripts/obfuscate.mjs && node scripts/generate-integrity.mjs",
+    "build:plain": "vite build",
+    "build:admin": "tsc -p admin-web/tsconfig.json --noEmit && vite build --config admin-web/vite.config.ts",
+    "start": "electron .",
+    "dist": "node scripts/release.js",
+    "dist:unsigned": "node scripts/release.js --unsigned",
+    "dist:raw": "npm run icon && npm run build && electron-builder --win",
+    "icon": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-icon.ps1",
+    "prepare:win-code-sign": "node scripts/prepare-win-code-sign.js",
+    "cert:dev": "node scripts/make-dev-cert.js",
+    "seed": "node server/scripts/seed.js",
+    "seed:admin": "node server/scripts/seed-admin.js",
+    "test:server": "node --test server/test/*.test.js",
+    "test:local": "node --test src/main/test/*.test.js",
+    "test:all": "npm run build:admin && npm run test:server && npm run test:local",
+    "preflight": "node scripts/preflight.js",
+    "backup:create": "node scripts/backup.js create",
+    "backup:list": "node scripts/backup.js list",
+    "backup:verify": "node scripts/backup.js verify",
+    "backup:restore": "node scripts/backup.js restore",
+    "audit:export": "node scripts/export-audit.js",
+    "update:sign": "node scripts/sign-update.mjs",
+    "smoke:production": "node scripts/smoke-production.js",
+    "smoke:release": "node scripts/smoke-release.js",
+    "smoke:installer": "node scripts/smoke-installer.js",
+    "smoke:dr": "node scripts/smoke-dr.js",
+    "smoke:abuse": "node scripts/smoke-abuse.js",
+    "bundle": "node scripts/bundle.js",
+    "smoke:bundle": "node scripts/smoke-bundle.js",
+    "clean:comments": "node scripts/strip-comments.mjs",
+    "acceptance": "node scripts/acceptance.js"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.1.1",
+    "@fontsource/space-grotesk": "^5.1.1",
+    "electron-updater": "^6.3.9",
+    "motion": "^12.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.10",
+    "@types/react": "^18.3.32",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^35.7.5",
+    "electron-builder": "^25.1.8",
+    "javascript-obfuscator": "^4.1.1",
+    "selfsigned": "^5.5.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.1.0",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.lasttraining.desktop",
+    "productName": "Last Training",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signingHashAlgorithms": [
+        "sha256"
+      ],
+      "rfc3161TimeStampServer": "http://timestamp.digicert.com",
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "src/main/**/*",
+      "src/preload/**/*",
+      "build/icon.ico",
+      "package.json"
+    ]
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "electron@35.7.5": true
+  }
+}
